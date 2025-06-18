@@ -64,3 +64,17 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+
+#shoppingList {
+    li {
+        @apply py-2;
+
+        &.ghost {
+            @apply bg-white/10 border border-white/10;
+        }
+
+        .handle {
+            cursor: move;
+        }
+    }
+}

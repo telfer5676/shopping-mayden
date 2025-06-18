@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Shopping;
 
 Route::get('/', function () {
     return view('welcome');
@@ -10,6 +12,18 @@ Route::get('/', function () {
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
+
+Route::view('shopping', 'shopping')
+    ->middleware(['auth', 'verified'])
+    ->name('shopping');
+
+Route::post('/order', function (Request $request) {
+    $ids = explode('+',$request->input('order'));
+    
+    Shopping::order($ids);
+    
+    return true;
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
