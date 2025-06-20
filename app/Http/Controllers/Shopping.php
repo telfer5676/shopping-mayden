@@ -23,6 +23,8 @@ class Shopping extends Controller
             'price' => $price,
             'complete' => false
         ]);
+
+        return $item;
     }
 
     public static function complete($id) {
@@ -32,6 +34,8 @@ class Shopping extends Controller
             $item->complete = true;
             $item->save();
         }
+
+        return $item;
     }
 
     public static function delete($id) {
@@ -40,6 +44,8 @@ class Shopping extends Controller
         if($item->user_id == Auth::id()){
             $item->delete();
         }
+        
+        return $item;
     }
 
     public static function order($ids) {
